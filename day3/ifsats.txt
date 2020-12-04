@@ -1,0 +1,2 @@
+$t+=$r
+if ($t -ge $tjomme[0].Length) { $t = $t - $tjomme[0].Length}

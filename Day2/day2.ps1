@@ -42,6 +42,6 @@ write-host $valid
 
 
 ## Cool lösning hur allt asig
-$passwords|Where-Object {$L,$H,$c,$p=$_-split'\W+';$p |sls "^([^$c]*$c[^$c]*){$L,$H}$"}|measure
+#$passwords|Where-Object {$L,$H,$c,$p=$_-split'\W+';$p |sls "^([^$c]*$c[^$c]*){$L,$H}$"}|measure
 #regex
-'^([^n]*n[^n]*){1,10}$' #<-- Matchar allt utom n för att sedan matcha n sen allt utom n. DVS träffa n 1 - 10 gånger.
+#'^([^n]*n[^n]*){1,10}$' #<-- Matchar allt utom n för att sedan matcha n sen allt utom n. DVS träffa n 1 - 10 gånger.

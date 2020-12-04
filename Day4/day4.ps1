@@ -1,5 +1,4 @@
 $inputprod = get-content .\Day4\part4.txt
-$inputtest = $inputprod | select -first 20
 
 
 class Passport {

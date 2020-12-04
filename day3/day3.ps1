@@ -1,6 +1,6 @@
 $trees = Get-Content .\day3\part3.txt
-
 $trees= ($trees -split '\n').trim()
+
 #Flyttar träden eftersom mönstrerna upprepar sig så vandrar tillbaka med pekaren 
 #.
 #   .

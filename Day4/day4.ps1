@@ -1,10 +1,6 @@
-$inputtest = get-content .\day4\test.txt
-$inputtest -split '\s{2,}'
 
 $inputprod = get-content .\Day4\part4.txt
 $inputtest = $inputprod | select -first 20
-$pattern = '(?<ecl>ecl:\w+)|(?<pid>pid:\d+)|(?<eyr>eyr:\d+)|(?<byr>byr:\d+)|(?<iyr>iyr:\d+)|(?<hcl>hcl:#\w+)|(?<hgt>hgt:\d+\w{2})'
-$pattern2 = '(?<ecl>ecl:\w+)|(?<pid>pid:\d+)|(?<eyr>eyr:\d+)|(?<byr>byr:\d+)|(?<iyr>iyr:\d+)|(?<hcl>hcl:#\w+)|(?<hgt>hgt:\d+\w{2})|(?<cid>cid:\d+)'
 
 
 class Passport {

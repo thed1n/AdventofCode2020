@@ -8,24 +8,12 @@ $pattern2 = '(?<ecl>ecl:\w+)|(?<pid>pid:\d+)|(?<eyr>eyr:\d+)|(?<byr>byr:\d+)|(?<
 
 
 class Passport {
-    #[uint32]$byr
-    #[uint32]$iyr
-    #[uint32]$eyr
-    #[string]$hgt
-    #[string]$hcl
-    #[string]$ecl
-    #[uint32]$passid
-    #[uint32]$cid
     [hashtable]$passport = [hashtable]::new()
     [bool]$valid
     
-    #Passport ($byr,$iyr,$eyr,$hgt,$hcl,$ecl,$passid,$cid) {
-        
-    #}
     Passport () {}
 
     CheckValid () {
-        #"byr","iyr","eyr","hgt","hcl","ecl","pid","cid"
         $amount = 0
         "byr","iyr","eyr","hgt","hcl","ecl","pid","cid" | % {
         if ($this.passport.containskey($_) -eq $true) {$amount++}
@@ -35,12 +23,12 @@ class Passport {
         if ($amount -eq 8) {$this.valid = $true} 
         elseif (($amount -eq 7) -and ($this.passport.containskey('cid') -eq $false)) {$this.valid = $true}
         else {$this.valid = $false}
-        #if (($amount -eq 7) -and ($this.passport.containskey('cid') -eq $true)) {$this.valid = $true}
 
     }
     Addvalue ($key,$value) {
         $this.passport.add($key,$value)
     }
+
     ##Part2
     Addvaluevalidate ($key,$value) {
       
@@ -88,7 +76,6 @@ $o = 0
         $passport
         $o = 0
         continue
-        #$i+=1
     }
 
     else {
@@ -105,6 +92,8 @@ $o = 0
         $passport
     }
 }
+
+#Part 2, lösningen då jag byggt om det för det.
 
 $i = 0
 $passports| %{if ($_.valid -eq $true) {$i++}}

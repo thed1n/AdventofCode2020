@@ -90,8 +90,7 @@ $seats | sort seatid -Descending | select -first 1 -ExpandProperty seatid
 
 
 #part 2
-$f = $seats.seatid | sort | select -first 1
-$l = $seats.seatid | sort | select -last 1
+$f,$l = $seats.seatid | sort | select -first 1 -last 1
 
 [int32[]]$my = $f..$l |% {$_}
 

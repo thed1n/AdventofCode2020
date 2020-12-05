@@ -81,6 +81,11 @@ class seatid {
     }
 }
 
+#Lösning av bla p2vb
+# Gör om FLBR till binärt sedan konvertera det till decimalt. Det ger seatid direkt.
+# $data | %{[convert]::ToInt32(($_ -replace '[FL]', '0' -replace '[BR]', '1'), 2)} 
+#
+
 #testdata
 #"BFFFBBFRRR","FFFBBBFRRR","BBFFBBFRLL" | %{[seatid]::new($_)} | sort seatid -Descending | select -first 1 -ExpandProperty seatid
 

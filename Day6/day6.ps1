@@ -27,14 +27,14 @@ $count
 while ($null -eq $finish) {
     
     if ($inputdata[$i] -eq ":") {
-        write-debug "new group"
+        #write-debug "new group"
 
         $p2 = $i - 1
         #finds how many in the group
         if (($p2 - $p1) -eq 0) { $grp_num = 1 }
         else { $grp_num = ($p2 - $p1) + 1 }
 
-        write-debug $p2","$p1","$grp_num
+        #write-debug $p2","$p1","$grp_num
 
         [char[]]$templine = $inputdata[$p1..$p2] -join ''
         $l1 = $templine | sort -Unique
@@ -43,10 +43,11 @@ while ($null -eq $finish) {
             $letter = $_
             $lettercount = ($templine | ? { $_ -eq $letter }).count
             
-            write-debug $lettercount","$grp_num
+            #write-debug $lettercount","$grp_num
+            
             #if lettercount matches or greater then grp add to the count
             if ($lettercount -ge $grp_num) {
-                write-debug "adding 1 to: $count2"
+                #write-debug "adding 1 to: $count2"
                 $count2++
             }
 

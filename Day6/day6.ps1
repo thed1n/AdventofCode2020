@@ -1,4 +1,5 @@
 #added : to the end to make part 2 work.
+#$inputdata2 = ((Get-Content -Path .\Day6\part6.txt -raw) -split '\n\r').trim() <-- för att få splittarna att fungera har ej använt det nu.
 $inputdata = $(Get-Content -Path .\Day6\part6.txt | % {
     if ($_.length -eq 0) { ":" }
     else { $_ } };":")
@@ -44,7 +45,7 @@ while ($null -eq $finish) {
             $lettercount = ($templine | ? { $_ -eq $letter }).count
             
             #write-debug $lettercount","$grp_num
-            
+
             #if lettercount matches or greater then grp add to the count
             if ($lettercount -ge $grp_num) {
                 #write-debug "adding 1 to: $count2"

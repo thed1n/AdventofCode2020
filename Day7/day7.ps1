@@ -111,6 +111,8 @@ dark blue bags contain 2 dark violet bags.
 dark violet bags contain no other bags.
 #>
 
+
+#Nedan är för att reversera det.
 function get-bagcontent ($color, $num) {
     
     if ($bag.ContainsKey($color) -eq $false) {
@@ -123,11 +125,11 @@ function get-bagcontent ($color, $num) {
         write-debug $color
         write-debug ($numbag + $numbag)
         $numbag                                                 #antal väskor
-        $numbag * (get-bagcontent -color $color -num $numbag)   #antal väskor * innehållet i nästa
+        $numbag * (get-bagcontent -color $color -num $numbag)   #antal väskor * innehållet i nästa (loopar vidare tills det inte finns fler.)
     } | Measure-Object -Sum | % Sum                             #slår ihop samtliga värden |% sum <-- visar det direkt istället för ex select-object -expandproperty sum
 }
 
-get-bagcontent -color 'shiny gold' -num 1
+$summa = get-bagcontent -color 'shiny gold' -num 1
 
 
 [PSCustomObject]@{

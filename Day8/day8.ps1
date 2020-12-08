@@ -7,14 +7,15 @@ class Microcodecomputer {
     [hashtable]$positions= @{}
     [int32]$acc = 0
     [int32]$pos = 0
-    [int32]$change = 0
-    [string]$prevval = ''
+    [int32]$change = 0 #pointer var jag bytt jmp / nop
+    [string]$prevval = '' # föregående jmp/nop värdet
     [bool]$done = $false
+    [int32]$runs = 0
     #[int32]$i = 0
 
-    Microcodecomputer ($input) {
+    Microcodecomputer ($input1) {
 
-        $input | %{
+        $input1 | %{
             [string]$instr,[int32]$num = $_ -split " "
             $this.operations.add($instr)
             $this.instructions.add($num)
@@ -60,19 +61,25 @@ class Microcodecomputer {
                     $this.prevval = $this.operations[$c]
                     $this.operations[$c] = 'jmp'
                     $this.change = $c
+                    $this.reset() #
+                    $this.work() #
+                    $this.runs++
                 }
                 elseif ($this.operations[$c] -eq 'jmp') {
                     $this.prevval = $this.operations[$c]
                     $this.operations[$c] = 'nop'
                     $this.change = $c
+                    $this.reset() #
+                    $this.work() #
+                    $this.runs++
                 }
                 
                 
                 write-debug "previous $($this.prevval)"
                 write-debug "New val $($this.operations[$this.change])"
 
-                $this.reset()
-                $this.work()
+                #$this.reset()
+                #$this.work()
                 write-debug "setting $($this.operations[$this.change]) to $($this.prevval)"
                 $this.operations[$this.change]=$this.prevval
                 
@@ -97,18 +104,14 @@ class Microcodecomputer {
 }
 
 $computer = [Microcodecomputer]::new($input8)
+
 $computer.work()
 $part1 = $computer.acc
-
 
 $computer.reset()
 $computer.testvalue()
 $part2 = $computer.acc
 
-
-
-#1610 fel men rätt för någon annan.
-#1654 rätt, while istället för for loop.
 
 [PSCustomObject]@{
     part1 = $part1

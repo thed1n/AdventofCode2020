@@ -15,28 +15,6 @@ function get-potentialsum ($intarray) {
     return ,$temparray
 }
 
-function generate-contigous ($intarray,$n) {
-
-    
-    [System.Collections.Generic.HashSet[double]]$temparray =@()
-
-    for ($i = 0; $i -lt $intarray.count; $i++) {
-        [double]$value = 0
-        for ($x = $i; $x -lt ($i+$n) ; $x++) {
-            $value += $intarray[$x]
-            #write-debug $($intarray[$x])
-            
-            #$x
-        }
-        #write-debug "reload"
-        #write-debug $value
-        [void]$temparray.add($value)
-    }
-
-    
-    
-    return ,$temparray
-}
 
 function generate-contigous ($intarray,$n) {
 

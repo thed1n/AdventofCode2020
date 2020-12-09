@@ -1,35 +1,9 @@
 [double[]]$input9 = Get-Content -Path .\Day9\part9.txt
-[double[]]$input9 = Get-Content -Path .\Day9\test9.txt
+#[double[]]$input9 = Get-Content -Path .\Day9\test9.txt
 
 
-function get-potentialsum ($intarray,[double]$premble) {
-    #[System.Collections.Generic.HashSet[double]]$temparray =@()
- 
-    $start = 0
-    #$preamble = 41682220
-    $stop = $startpointer = $intarray.count
-    :outer while ($true) {
-        $value = 0
-        for ($i = $startpointer; $i -lt $array.Count; $i--) {
-           
-            $start = $i
-            $value += $intarray[$i]
-            
-            if ($value -gt $preamble) {
-                break
-            }
-            elseif ($value -eq $preamble) {
-                break :outer
-            }
-   
-        }
 
-
-    }
-    return @($start,$stop)
-}
-
-function get-contiguousset ($intarray) {
+function get-potentialsum ($intarray) {
 
     [System.Collections.Generic.HashSet[double]]$temparray =@()
  
@@ -39,6 +13,80 @@ function get-contiguousset ($intarray) {
         }
     }
     return ,$temparray
+}
+
+function generate-contigous ($intarray,$n) {
+
+    
+    [System.Collections.Generic.HashSet[double]]$temparray =@()
+
+    for ($i = 0; $i -lt $intarray.count; $i++) {
+        [double]$value = 0
+        for ($x = $i; $x -lt ($i+$n) ; $x++) {
+            $value += $intarray[$x]
+            #write-debug $($intarray[$x])
+            
+            #$x
+        }
+        #write-debug "reload"
+        #write-debug $value
+        [void]$temparray.add($value)
+    }
+
+    
+    
+    return ,$temparray
+}
+
+function generate-contigous ($intarray,$n) {
+
+    
+    [System.Collections.Generic.HashSet[double]]$temparray =@()
+
+    for ($i = 0; $i -lt $intarray.count; $i++) {
+        [double]$value = 0
+        for ($x = $i; $x -lt ($i+$n) ; $x++) {
+            $value += $intarray[$x]
+            #write-debug $($intarray[$x])
+            
+            #$x
+        }
+        #write-debug "reload"
+        #write-debug $value
+        [void]$temparray.add($value)
+    }
+
+    
+    
+    return ,$temparray
+}
+
+
+function find-topbottom ($intarray,$n,$missing) {
+
+    
+    #[System.Collections.Generic.HashSet[double]]$temparray =@()
+
+    for ($i = 0; $i -lt $intarray.count; $i++) {
+        [double]$value = 0
+        for ($x = $i; $x -lt ($i+$n) ; $x++) {
+            $value += $intarray[$x]
+            #write-debug $x
+        }
+        if ($value -eq $missing) {
+            $bot = $intarray[$i]
+            $top = $intarray[$i]
+
+            for ($j = $i; $j -lt $x; $j++) {
+                if ($intarray[$j] -lt $bot) {$bot = $intarray[$j]}
+                if ($intarray[$j] -gt $top) {$top = $intarray[$j]}
+            }
+
+            return (@($bot,$top))
+            break
+        }
+        #[void]$temparray.add($value)
+    }
 }
 
 #Preamble Length
@@ -54,10 +102,26 @@ for ($i = $pl-1; $i -lt $input9.Count; $i++) {
 
 }
 
+
+
 $lessthanbug = $input9 | where {$_ -lt $missing}
-get-potentialsum -intarray $lessthanbug -premble $missing
+
+
+for ($i = 2; $i -lt 1000; $i++) {
+
+    $conti = generate-contigous -intarray $lessthanbug -n $i
+
+    if ($conti.contains($missing)) {
+        write-host $i
+        break}
+
+}
+
+$sumpart2 = find-topbottom -intarray $lessthanbug -n $i -missing $missing | Measure-Object -Sum | % sum
+#get-potentialsum -intarray $lessthanbug -premble $missing
 
 [PSCustomObject]@{
     Part1 = $Missing
+    Part2 = $sumpart2
 }
 

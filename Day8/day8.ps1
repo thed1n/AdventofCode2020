@@ -27,7 +27,7 @@ class Microcodecomputer {
         while ($true) {
             
             if ($i -eq $this.operations.count) {$this.done = $true;break}
-            Write-Debug $i
+            #Write-Debug $i
             $this.positions[$i]++
             if ($this.positions[$i] -eq 2) {
                 break
@@ -53,7 +53,7 @@ class Microcodecomputer {
     testvalue () {
             $c = $this.change
             while ($true) {
-                write-debug $c
+                #write-debug $c
                 
                 if ($this.done -eq $true) {break}      
 
@@ -73,14 +73,11 @@ class Microcodecomputer {
                     $this.work() #
                     $this.runs++
                 }
-                
-                
-                write-debug "previous $($this.prevval)"
-                write-debug "New val $($this.operations[$this.change])"
+                                
+                #write-debug "previous $($this.prevval)"
+                #write-debug "New val $($this.operations[$this.change])"
 
-                #$this.reset()
-                #$this.work()
-                write-debug "setting $($this.operations[$this.change]) to $($this.prevval)"
+                #write-debug "setting $($this.operations[$this.change]) to $($this.prevval)"
                 $this.operations[$this.change]=$this.prevval
                 
                 $c++

@@ -103,7 +103,6 @@ for ($i = $pl-1; $i -lt $input9.Count; $i++) {
 }
 
 
-
 $lessthanbug = $input9 | where {$_ -lt $missing}
 
 
@@ -118,7 +117,7 @@ for ($i = 2; $i -lt 1000; $i++) {
 }
 
 $sumpart2 = find-topbottom -intarray $lessthanbug -n $i -missing $missing | Measure-Object -Sum | % sum
-#get-potentialsum -intarray $lessthanbug -premble $missing
+
 
 [PSCustomObject]@{
     Part1 = $Missing

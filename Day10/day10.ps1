@@ -191,7 +191,7 @@ return $total
 Measure-Command {
 NumWay2 -array $adapters -i 0
 }
-##Learning Dynamical programming / memoization
+##Learning Dynamical programming / memoization / recursiveness
 function Tribonnaci_rec($n) {
 
     if ($n -eq 0 -or $n -eq 1 -or $n -eq 2) {return 0}
